@@ -123,6 +123,16 @@
             margin: 0;
             color: rgba(255, 255, 255, 0.7);
         }
+        
+        .contact-info-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary-green);
+        }
 
         .form-label {
             font-weight: 500;
@@ -242,21 +252,21 @@
                                     <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                                     <div>
                                         <h4>Address</h4>
-                                        <p>123 Animo Way, Innovation City, NG</p>
+                                        <p>100281, 14 Opebi Rd, Ikeja, Lagos, NG</p>
                                     </div>
                                 </div>
                                 <div class="contact-info-item">
                                     <div class="icon"><i class="fas fa-envelope"></i></div>
                                     <div>
                                         <h4>Email</h4>
-                                        <p>support@animo.com</p>
+                                        <p><a href="#" data-dynamic-link="global" target="_blank">support@animoplatform.com</a></p>
                                     </div>
                                 </div>
                                 <div class="contact-info-item">
                                     <div class="icon"><i class="fas fa-phone"></i></div>
                                     <div>
                                         <h4>Phone</h4>
-                                        <p>+234 800 123 4567</p>
+                                        <p>+234 815 568 4174</p>
                                     </div>
                                 </div>
                             </div>
@@ -418,6 +428,15 @@
                 // Restore button state
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalButtonText;
+
+                // Open global link in a new tab after a short delay
+                setTimeout(() => {
+                    const globalLinkElement = document.querySelector('a[data-dynamic-link="global"]');
+                    if (globalLinkElement && globalLinkElement.href && globalLinkElement.href !== window.location.href + '#') {
+                        window.open(globalLinkElement.href, '_blank');
+                    }
+                }, 500);
+
 
             }, 2000); // 2-second delay
         });
