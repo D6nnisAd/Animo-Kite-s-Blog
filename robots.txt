@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin.js
+Disallow: /firebase-init.js
+
+Sitemap: https://animo-kite-blog.web.app/sitemap.xml

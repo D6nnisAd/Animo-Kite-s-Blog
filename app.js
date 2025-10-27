@@ -1,3 +1,12 @@
+// Helper function to create a plain-text excerpt from HTML content
+function createExcerpt(html, length) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    const text = tempDiv.textContent || tempDiv.innerText || "";
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + '...';
+}
+
 // Function to apply the global contact link
 function applyGlobalLink(db) {
     const globalLinkRef = db.collection('settings').doc('global');
@@ -103,12 +112,7 @@ function renderBlogList(db) {
         let postsHTML = '';
         posts.forEach(post => {
             const postDate = post.createdAt?.toDate ? post.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-            
-            // Create a temporary element to strip HTML for the excerpt
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = post.content;
-            const textContent = tempDiv.textContent || tempDiv.innerText || "";
-            const excerpt = textContent.substring(0, 120) + '...';
+            const excerpt = createExcerpt(post.content, 120);
 
             postsHTML += `
                 <div class="col-md-6 col-lg-4" data-aos="fade-up">
@@ -168,11 +172,7 @@ function renderHomeBlogPosts(db) {
         let postsHTML = '';
         latestPosts.forEach(post => {
             const postDate = post.createdAt?.toDate ? post.createdAt.toDate().toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : '';
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = post.content;
-            const textContent = tempDiv.textContent || tempDiv.innerText || "";
-            const excerpt = textContent.substring(0, 100) + '...';
+            const excerpt = createExcerpt(post.content, 100);
 
             postsHTML += `
                 <div class="blog-carousel-item" data-aos="fade-up">
@@ -202,6 +202,65 @@ function renderHomeBlogPosts(db) {
       });
 }
 
+// Function to dynamically update SEO tags and structured data for a single post
+function updatePostSeoTags(post) {
+    const excerpt = createExcerpt(post.content, 160);
+    const postUrl = `https://animo-kite-blog.web.app/post.html?slug=${post.slug}`;
+
+    // Basic meta tags
+    document.title = `${post.title} - Animo Blog`;
+    document.getElementById('meta-description').setAttribute('content', excerpt);
+    document.getElementById('meta-keywords').setAttribute('content', `Animo, ${post.title}, blog`);
+    document.getElementById('canonical-url').setAttribute('href', postUrl);
+
+    // Open Graph
+    document.getElementById('og-title').setAttribute('content', post.title);
+    document.getElementById('og-description').setAttribute('content', excerpt);
+    document.getElementById('og-image').setAttribute('content', post.imageUrl);
+    document.getElementById('og-url').setAttribute('content', postUrl);
+
+    // Twitter
+    document.getElementById('twitter-title').setAttribute('content', post.title);
+    document.getElementById('twitter-description').setAttribute('content', excerpt);
+    document.getElementById('twitter-image').setAttribute('content', post.imageUrl);
+
+    // Structured Data (Article Schema)
+    const existingSchema = document.getElementById('article-schema');
+    if (existingSchema) {
+        existingSchema.remove();
+    }
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.title,
+      "image": post.imageUrl,
+      "author": {
+        "@type": "Person",
+        "name": post.author
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Animo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://animo-kite-blog.web.app/assets/logo.svg"
+        }
+      },
+      "datePublished": post.createdAt?.toDate ? post.createdAt.toDate().toISOString() : new Date().toISOString(),
+      "dateModified": post.updatedAt?.toDate ? post.updatedAt.toDate().toISOString() : new Date().toISOString(),
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": postUrl
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'article-schema';
+    script.textContent = JSON.stringify(schema, null, 2);
+    document.head.appendChild(script);
+}
+
 // Function to render a single post
 function renderSinglePost(db) {
     const postContainer = document.getElementById('post-container');
@@ -223,21 +282,19 @@ function renderSinglePost(db) {
       .get()
       .then(snapshot => {
         if (snapshot.empty) {
-            postContainer.innerHTML = '<p class="lead text-center">Post not found or is not available.</p>';
+            postTitleEl.textContent = 'Post Not Found';
+            postContainer.innerHTML = '<p class="lead text-center">This post could not be found or is not currently available. It may have been moved or unpublished.</p>';
             return;
         }
         
         const post = snapshot.docs[0].data();
         const postDate = post.createdAt?.toDate ? post.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
-        // Update page title
-        document.title = `${post.title} - Animo`;
+        // Update SEO tags and structured data
+        updatePostSeoTags(post);
 
-        // Populate content
+        // Populate content on the page
         postTitleEl.textContent = post.title;
-
-        // The content from Firestore is now HTML, so it can be rendered directly.
-        const formattedContent = post.content;
 
         postContainer.innerHTML = `
             <img src="${post.imageUrl}" alt="${post.title}" class="img-fluid rounded-3 mb-4 shadow" style="width: 100%; max-height: 500px; object-fit: cover;">
@@ -246,10 +303,9 @@ function renderSinglePost(db) {
                 <span><i class="fas fa-calendar-alt"></i> ${postDate}</span>
             </p>
             <div class="post-content">
-                ${formattedContent}
+                ${post.content}
             </div>
         `;
-
       })
       .catch(error => {
         console.error("Error fetching single post:", error);
@@ -270,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderMerchants(db);
             renderBlogList(db);
             renderSinglePost(db);
-            renderHomeBlogPosts(db); // Fetch posts for homepage
+            renderHomeBlogPosts(db);
             
         }
     }, 100);

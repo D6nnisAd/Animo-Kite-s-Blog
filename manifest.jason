@@ -1,0 +1,21 @@
+{
+  "name": "Animo",
+  "short_name": "Animo",
+  "description": "Animo: The Future of Wealth Creation. An innovative ecosystem merging technology, community, and opportunity.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#03082E",
+  "theme_color": "#03082E",
+  "icons": [
+    {
+      "src": "/assets/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
