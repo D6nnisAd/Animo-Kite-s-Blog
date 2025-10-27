@@ -4,4 +4,4 @@ Disallow: /admin.html
 Disallow: /admin.js
 Disallow: /firebase-init.js
 
-Sitemap: https://animo-kite-blog.web.app/sitemap.xml
+Sitemap: https://animoplatform.com/sitemap.xml

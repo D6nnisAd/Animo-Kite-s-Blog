@@ -205,7 +205,7 @@ function renderHomeBlogPosts(db) {
 // Function to dynamically update SEO tags and structured data for a single post
 function updatePostSeoTags(post) {
     const excerpt = createExcerpt(post.content, 160);
-    const postUrl = `https://animo-kite-blog.web.app/post.html?slug=${post.slug}`;
+    const postUrl = `https://animoplatform.com/post.html?slug=${post.slug}`;
 
     // Basic meta tags
     document.title = `${post.title} - Animo Blog`;
@@ -243,7 +243,7 @@ function updatePostSeoTags(post) {
         "name": "Animo",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://animo-kite-blog.web.app/assets/logo.svg"
+          "url": "https://animoplatform.com/assets/logo.svg"
         }
       },
       "datePublished": post.createdAt?.toDate ? post.createdAt.toDate().toISOString() : new Date().toISOString(),
