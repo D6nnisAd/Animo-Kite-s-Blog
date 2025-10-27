@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animo - About Us</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- AOS 2.3.1 CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Internal CSS -->
+    <style>
+        :root {
+            --deep-blue: #03082E;
+            --primary-green: #ADFF2F;
+            --light-green: #00FF7F;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--deep-blue);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .page-header {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(3, 8, 46, 0.7), rgba(3, 8, 46, 0.7)), url('/assets/about-image2.png') no-repeat center center;
+            background-size: cover;
+            text-align: center;
+        }
+        .page-header .highlight {
+            color: var(--primary-green);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .section-title .highlight {
+            color: var(--primary-green);
+        }
+
+        .story-section p, .mission-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .mission-vision-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5rem;
+            height: 100%;
+        }
+        .mission-vision-card .icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+         .mission-vision-card h3 {
+            font-weight: 600;
+         }
+
+        .values-section {
+             background-color: #020622;
+        }
+        .value-card {
+            text-align: center;
+        }
+        .value-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        .value-card h4 {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .value-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .team-section .team-member-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .team-member-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        .team-member-card .info {
+            padding: 1.5rem;
+        }
+        .team-member-card h5 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .team-member-card p {
+            color: var(--primary-green);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        /* Re-using styles from index.html for consistency */
+        .navbar { transition: all 0.4s ease-in-out; padding-top: 1rem; padding-bottom: 1rem; }
+        .navbar.scrolled { background-color: rgba(3, 8, 46, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .navbar-brand img { height: 25px; }
+        .nav-link { color: #fff; font-weight: 500; margin: 0 1rem; transition: color 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green); }
+        .navbar-toggler { border: none; font-size: 1.5rem; color: white; }
+        .navbar-toggler:focus { box-shadow: none; }
+        .btn { padding: 12px 32px; border-radius: 50px; font-weight: 600; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; border-width: 2px; }
+        .btn.btn-sm { padding: 8px 20px; font-size: 0.9rem; }
+        .btn-gradient { background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%); border: none; color: #01041a; box-shadow: 0 0 15px 2px rgba(173, 255, 47, 0.5); }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 0 25px 8px rgba(173, 255, 47, 0.6); }
+
+        .footer { background-color: var(--deep-blue); padding: 80px 0 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-brand img { height: 30px; margin-bottom: 1rem; }
+        .footer p { color: rgba(255, 255, 255, 0.7); }
+        .footer h5 { color: white; font-weight: 600; margin-bottom: 1.5rem; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--primary-green); }
+        .newsletter-form .form-control { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; }
+        .newsletter-form .form-control::placeholder { color: rgba(255, 255, 255, 0.5); }
+        .footer-social-icons a { color: rgba(255, 255, 255, 0.7); font-size: 1.5rem; margin-right: 1.5rem; transition: color 0.2s, transform 0.2s; }
+        .footer-social-icons a:hover { color: var(--primary-green); transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; margin-top: 3rem; }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse { background-color: rgba(3, 8, 46, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.3); padding: 1rem; margin-top: 1rem; border-radius: 12px; }
+            .nav-item { margin: 0.5rem 0; }
+            .section { padding: 60px 0; }
+            .footer { text-align: center; }
+            .footer-links { margin-bottom: 2rem; }
+            .footer-social-icons { margin-top: 1rem; justify-content: center; }
+            .footer-bottom .row > div { text-align: center !important; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid px-3">
+                <a class="navbar-brand" href="index.html">
+                    <img src="/assets/logo.svg" alt="Animo Logo">
+                </a>
+                <!-- Mobile controls wrapper -->
+                <div class="d-flex align-items-center d-lg-none">
+                    <a href="register.html" class="btn btn-gradient btn-sm me-2">Get Started</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#packages">Packages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="merchants.html">Merchants</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    </ul>
+                    <div class="d-none d-lg-block">
+                        <a href="register.html" class="btn btn-gradient">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container" data-aos="fade-up">
+                <h1 class="display-3 fw-bold">About <span class="highlight">Animo</span></h1>
+                <p class="lead fs-4 mt-3">Pioneering the future of opportunity, one step at a time.</p>
+            </div>
+        </section>
+
+        <section class="section story-section">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <div data-dynamic-link="global" target="_blank">
+                            <img src="/assets/about-image.jpeg" alt="Our Story" class="img-fluid rounded-3 shadow-lg">
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <h2 class="section-title text-start">Our <span class="highlight">Story</span></h2>
+                        <p>Animo was born from a simple yet powerful idea: that everyone, everywhere, deserves a chance to build a better future. In a world of rapid technological change, we saw a gap between innovation and accessibility. We envisioned a single platform that could bridge this gap, merging cutting-edge technology with real-world opportunities for personal and financial growth.</p>
+                        <p>Our journey began with a diverse team of dreamers, developers, and entrepreneurs who believed in the power of community. We set out to create more than just an app; we wanted to build a globally connected ecosystem where every individual's effort is recognized and rewarded. From our groundbreaking Walk-to-Earn technology to our comprehensive Skillup programs, every feature of Animo is designed with one purpose: to empower you to thrive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mission-section values-section">
+            <div class="container">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset d-block h-100">
+                            <div class="mission-vision-card">
+                                <div class="icon"><i class="fas fa-bullseye"></i></div>
+                                <h3>Our Mission</h3>
+                                <p>To merge technology, community, and opportunity into one seamless platform that redefines wealth creation and empowers individuals across the globe to achieve financial freedom and personal growth.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset d-block h-100">
+                            <div class="mission-vision-card">
+                                <div class="icon"><i class="fas fa-eye"></i></div>
+                                <h3>Our Vision</h3>
+                                <p>To build a world where opportunity is universal, and every person has the tools and support to unlock their full potential, creating a global community of innovators, earners, and leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section class="section values-section" style="background-color: var(--deep-blue);">
+            <div class="container">
+                 <h2 class="section-title">Our Core <span class="highlight">Values</span></h2>
+                 <div class="row g-5 mt-4">
+                     <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                            <div class="value-card">
+                                 <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                                 <h4>Innovation</h4>
+                                 <p>We continuously push the boundaries of technology to create forward-thinking solutions that deliver real value.</p>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                            <div class="value-card">
+                                 <div class="icon"><i class="fas fa-users"></i></div>
+                                 <h4>Community</h4>
+                                 <p>We believe in the power of connection, fostering a supportive and collaborative global network.</p>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                            <div class="value-card">
+                                 <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                                 <h4>Integrity</h4>
+                                 <p>We operate with transparency and honesty, building trust with our users by always putting their security first.</p>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                            <div class="value-card">
+                                 <div class="icon"><i class="fas fa-rocket"></i></div>
+                                 <h4>Empowerment</h4>
+                                 <p>We provide the tools, knowledge, and opportunities to help individuals take control of their financial future.</p>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section class="section team-section values-section">
+            <div class="container">
+                <h2 class="section-title">Meet the <span class="highlight">Team</span></h2>
+                <p class="lead text-center mx-auto" style="max-width: 700px;">We are a passionate team of innovators, thinkers, and builders dedicated to making Animo a success for everyone.</p>
+                <div class="row g-4 mt-4">
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                            <div class="team-member-card">
+                                <img src="/assets/team-alex-chen.jpg" alt="Alex Chen, Founder & CEO">
+                                <div class="info">
+                                    <h5>Alex Chen</h5>
+                                    <p>Founder & CEO</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                             <div class="team-member-card">
+                                <img src="/assets/team-bria-adebayo.jpg" alt="Bria Adebayo, Chief Technology Officer">
+                                <div class="info">
+                                    <h5>Bria Adebayo</h5>
+                                    <p>Chief Technology Officer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                             <div class="team-member-card">
+                                <img src="/assets/team-carlos-gomez.jpg" alt="Olanrewaju Gomez, Head of Product">
+                                <div class="info">
+                                    <h5>Olanrewaju Gomez</h5>
+                                    <p>Head of Product</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div data-dynamic-link="global" target="_blank" class="text-decoration-none text-reset">
+                             <div class="team-member-card">
+                                <img src="/assets/team-mei-lin.jpg" alt="Mei Lin, Community Manager">
+                                <div class="info">
+                                    <h5>Mei Lin</h5>
+                                    <p>Community Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+     <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-4">
+                    <a href="#" class="footer-brand"><img src="/assets/logo.svg" alt="Animo Logo"></a>
+                    <p>A globally connected ecosystem built to redefine wealth creation and personal growth, merging technology, community, and opportunity.</p>
+                    <div class="footer-social-icons mt-4 d-flex">
+                        <a data-dynamic-link="global" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a data-dynamic-link="global" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a data-dynamic-link="global" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a data-dynamic-link="global" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#packages">Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="merchants.html">Merchants</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5>Stay Updated</h5>
+                    <p>Subscribe to our newsletter to get the latest news and updates.</p>
+                    <a data-dynamic-link="global" target="_blank" class="text-decoration-none">
+                        <div class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Enter your email" readonly style="pointer-events: none;">
+                                <span class="btn btn-gradient">Subscribe</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; 2025 Animo. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="privacy.html" class="footer-links d-inline-block me-3">Privacy Policy</a>
+                        <a href="terms.html" class="footer-links d-inline-block">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    
+    <!-- Custom Firebase Init -->
+    <script src="firebase-init.js"></script>
+
+    <!-- jQuery 3.7.1 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- AOS 2.3.1 JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom App Logic -->
+    <script src="app.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        $(window).on('scroll', function() {
+            if ($(window).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animo - Create Account</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Internal CSS -->
+    <style>
+        :root {
+            --deep-blue: #03082E;
+            --primary-green: #ADFF2F; /* Brighter GreenYellow */
+            --light-green: #00FF7F;  /* Brighter SpringGreen */
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--deep-blue);
+            color: white;
+            overflow-x: hidden;
+            background-image: url('/assets/desktop-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .register-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+
+        .register-card {
+            background-color: rgba(3, 8, 46, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .register-logo {
+            height: 30px;
+            margin-bottom: 1.5rem;
+        }
+
+        .register-card h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .register-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 0.25rem rgba(173, 255, 47, 0.25);
+            color: white;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .package-selection {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-option {
+            position: relative;
+        }
+        
+        .package-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .package-label {
+            display: block;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .package-label:hover {
+            border-color: rgba(173, 255, 47, 0.5);
+        }
+
+        .package-option input[type="radio"]:checked + .package-label {
+            border-color: var(--primary-green);
+            background-color: rgba(173, 255, 47, 0.1);
+            box-shadow: 0 0 15px 2px rgba(173, 255, 47, 0.3);
+        }
+
+        .package-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .package-price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+        }
+        
+        .key-link {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .key-link a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .key-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .terms-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .terms-text a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: underline;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            border: none;
+            color: #01041a;
+            box-shadow: 0 0 15px 2px rgba(173, 255, 47, 0.5);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px 8px rgba(173, 255, 47, 0.6);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .login-link a {
+            color: var(--primary-green);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .form-inner-wrapper {
+            width: 100%;
+        }
+
+        /* Desktop Specific Styles */
+        @media (min-width: 992px) {
+            .register-section {
+                justify-content: flex-start;
+                padding: 0;
+                align-items: stretch;
+            }
+            .register-card {
+                width: 50%;
+                max-width: 650px;
+                min-height: 100vh;
+                border-radius: 0;
+                border-top: none;
+                border-bottom: none;
+                border-left: none;
+                box-shadow: 10px 0 40px rgba(0,0,0,0.5);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+            }
+            .form-inner-wrapper {
+                max-width: 550px;
+            }
+        }
+
+        /* Mobile Specific Styles */
+        @media (max-width: 576px) {
+            .register-card {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            .register-card h1 {
+                font-size: 1.5rem;
+            }
+            body {
+                background-image: url('/assets/mobile-background.jpg');
+            }
+            .package-name {
+                font-size: 1rem;
+            }
+            .package-price {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="register-section">
+        <div class="register-card">
+            <div class="form-inner-wrapper">
+                <div id="alert-container" class="mb-3"></div>
+
+                <div class="text-center">
+                    <a href="index.html"><img src="/assets/logo.svg" alt="Animo Logo" class="register-logo"></a>
+                    <h1>Create Your Account</h1>
+                    <p>Join our community and start earning!</p>
+                </div>
+
+                <form class="mt-4">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="johndoe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="+1234567890" required>
+                    </div>
+
+                    <div class="package-selection">
+                        <label class="form-label">Choose Your Activation Key Package</label>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="package-option">
+                                    <input type="radio" name="package" id="starter" value="starter" checked>
+                                    <label class="package-label" for="starter">
+                                        <div class="package-name">Starter Plan</div>
+                                        <div class="package-price">₦10,000</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="package-option">
+                                    <input type="radio" name="package" id="pro" value="pro">
+                                    <label class="package-label" for="pro">
+                                        <div class="package-name">Pro Plan</div>
+                                        <div class="package-price">₦15,000</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="activationKey" class="form-label">Activation Key</label>
+                        <input type="text" class="form-control" id="activationKey" required>
+                        <div class="form-text key-link mt-1">Don't have a key? <a href="merchants.html">Click here.</a></div>
+                    </div>
+
+                    <p class="terms-text text-center mt-4">By signing up, you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">privacy policy</a>.</p>
+                    
+                    <button type="submit" class="btn btn-gradient w-100 mt-2">Create Account</button>
+                </form>
+                
+                <p class="login-link">Already have an account? <a href="#">Log In</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const registerForm = document.querySelector('form');
+        const submitButton = registerForm.querySelector('button[type="submit"]');
+        const alertContainer = document.getElementById('alert-container');
+
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Clear previous alerts
+            alertContainer.innerHTML = '';
+
+            const originalButtonText = submitButton.innerHTML;
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...`;
+
+            setTimeout(() => {
+                // Show error message
+                const errorMessage = `
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Invalid activation key. Please double check your key or <a href="merchants.html" class="alert-link">Buy a new key here</a>.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                alertContainer.innerHTML = errorMessage;
+
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Restore button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+
+            }, 3000); // 3-second delay
+        });
+    </script>
+</body>
+</html>
