@@ -231,6 +231,24 @@
             box-shadow: 0 0 25px 8px rgba(173, 255, 47, 0.6);
         }
         
+        /* Glowing Button Animation */
+        @keyframes btn-glow-pulse-animation {
+          0%, 100% {
+            transform: translateY(0);
+            box-shadow: 0 0 20px 5px rgba(173, 255, 47, 0.7), 0 0 40px 15px rgba(0, 255, 127, 0.3);
+          }
+          50% {
+            transform: translateY(-6px);
+            box-shadow: 0 0 40px 12px rgba(173, 255, 47, 1), 0 0 70px 25px rgba(0, 255, 127, 0.6);
+          }
+        }
+
+        .btn-glow-pulse {
+            position: relative; 
+            z-index: 1;
+            animation: btn-glow-pulse-animation 1.8s infinite ease-in-out;
+        }
+
         .btn-outline-light {
              border-color: white;
         }
@@ -915,7 +933,7 @@
                 
                 <!-- Mobile controls wrapper -->
                 <div class="d-flex align-items-center d-lg-none">
-                    <a href="register.html" class="btn btn-gradient btn-sm me-2">Get Started</a>
+                    <a href="register.html" class="btn btn-gradient btn-sm me-2 btn-glow-pulse">Get Started</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -933,7 +951,7 @@
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                     </ul>
                     <div class="d-none d-lg-block">
-                        <a href="register.html" class="btn btn-gradient">Get Started</a>
+                        <a href="register.html" class="btn btn-gradient btn-glow-pulse">Get Started</a>
                     </div>
                 </div>
             </div>
