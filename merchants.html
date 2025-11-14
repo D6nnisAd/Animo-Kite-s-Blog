@@ -71,7 +71,7 @@
 
         .merchant-list {
             max-width: 800px;
-            margin: 4rem auto 0;
+            margin: 0 auto;
         }
 
         .merchant-item {
@@ -162,6 +162,153 @@
         .footer-social-icons a:hover { color: var(--primary-green); transform: translateY(-3px); }
         .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; margin-top: 3rem; }
 
+        /* Packages Section Styles */
+        .gold-text {
+            background: -webkit-linear-gradient(45deg, #FFD700, #F0E68C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .silver-text {
+            background: -webkit-linear-gradient(45deg, #E0E0E0, #B0C4DE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .package-card-v2 {
+            background: linear-gradient(145deg, #090e43, #020622);
+            border: 1px solid rgba(76, 85, 179, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .package-card-v2:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(173, 255, 47, 0.08), transparent 40%);
+            transform-origin: center;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .package-card-silver:before {
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.1), transparent 40%);
+        }
+        .package-card-v2:hover:before {
+            animation: rotateGlow 4s linear infinite;
+            opacity: 1;
+        }
+
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px 5px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 45px 12px rgba(255, 215, 0, 0.4); }
+        }
+        
+        .package-card-gold {
+            border-width: 2px;
+            border-image: linear-gradient(135deg, #FFD700, #E6C300) 1;
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+        .package-card-gold:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px 10px rgba(255, 215, 0, 0.3);
+            animation-play-state: paused;
+        }
+        .package-card-silver {
+            border-width: 2px;
+            border-image: linear-gradient(135deg, #00BFFF, #87CEEB) 1;
+            box-shadow: 0 0 30px 5px rgba(0, 191, 255, 0.2);
+        }
+        .package-card-silver:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px 10px rgba(0, 191, 255, 0.3);
+        }
+        .package-card-v2:hover {
+             transform: translateY(-10px);
+             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 25px;
+            right: -45px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: var(--deep-blue);
+            padding: 8px 0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: rotate(45deg);
+            width: 170px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        .package-card-header-v2 h3 { font-size: 2.2rem; font-weight: 700; }
+        .package-card-header-v2 .plan-subtitle { font-size: 1rem; color: var(--primary-green); font-weight: 500; min-height: 2.2rem; }
+        .package-card-silver .plan-subtitle { color: #87CEEB; }
+        .package-card-price-v2 { font-size: 3rem; font-weight: 700; color: white; line-height: 1; margin-top: 0.5rem; }
+        .package-card-price-v2 .currency { font-weight: 500; font-size: 1.8rem; vertical-align: top; margin-right: 2px; }
+        .package-card-price-v2 .term { font-size: 1rem; font-weight: 400; color: rgba(255, 255, 255, 0.7); }
+        .package-features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; padding: 0; margin: 1.5rem 0; flex-grow: 1; }
+        .package-features-grid li { background-color: rgba(0,0,0,0.2); padding: 0.75rem 1rem; border-radius: 8px; border-left: 3px solid var(--primary-green); }
+        .package-card-silver .package-features-grid li { border-left-color: #00BFFF; }
+        .package-features-grid li .feature-name { display: block; font-weight: 500; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .package-features-grid li .feature-value { display: block; font-size: 1.2rem; font-weight: 600; color: white; }
+        .package-features-grid .grid-full-width { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
+        .incentives-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin-top: 1rem; margin-bottom: 2rem; }
+        .incentives-list li { padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; position: relative; padding-right: 60px; }
+        .incentives-list li::after { content: 'ACTIVE'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; line-height: 1; }
+        .incentives-list li.active { background-color: rgba(173, 255, 47, 0.1); color: var(--primary-green); }
+        .incentives-list li.active::after { content: 'ACTIVE'; background-color: var(--primary-green); color: var(--deep-blue); }
+        .incentives-list li.inactive { background-color: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.6); }
+        .incentives-list li.inactive::after { content: 'INACTIVE'; background-color: #dc3545; color: white; }
+
+        /* Mobile Swipeable Packages */
+        .package-carousel-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 1rem 0;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+        }
+        .package-carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .package-carousel-wrapper .row {
+            padding: 0 1rem;
+        }
+        .package-carousel-wrapper .row > [class*="col-"] {
+             flex-shrink: 0;
+             padding: 0 10px;
+        }
+
+        @media (min-width: 992px) {
+            .package-carousel-wrapper {
+                overflow-x: visible;
+                padding: 0;
+                margin: 0;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+             .package-carousel-wrapper .row > [class*="col-"] {
+                padding: var(--bs-gutter-x, 0.75rem);
+            }
+        }
+
+
         @media (max-width: 991.98px) {
             .navbar-collapse { background-color: rgba(3, 8, 46, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.3); padding: 1rem; margin-top: 1rem; border-radius: 12px; }
             .nav-item { margin: 0.5rem 0; }
@@ -180,6 +327,46 @@
                 margin-top: 1rem;
                 width: 100%;
                 text-align: center;
+            }
+            .package-features-grid {
+                grid-template-columns: 1fr;
+            }
+            /* Compact package cards on mobile */
+            .package-card-v2 {
+                padding: 1.5rem;
+            }
+            .package-card-header-v2 h3 {
+                font-size: 1.8rem;
+            }
+            .package-card-header-v2 .plan-subtitle {
+                font-size: 0.9rem;
+            }
+            .package-card-price-v2 {
+                font-size: 2.5rem;
+            }
+            .package-card-v2 h4 { /* Targets "Reward Pattern" and "Included Incentives" */
+                font-size: 1.1rem;
+            }
+            .package-features-grid li {
+                padding: 0.6rem 0.8rem;
+            }
+            .package-features-grid li .feature-name {
+                font-size: 0.8rem;
+            }
+            .package-features-grid li .feature-value {
+                font-size: 1rem;
+            }
+            .incentives-list {
+                margin-bottom: 1.5rem;
+            }
+            .incentives-list li {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+                padding-right: 55px; /* adjust for 'ACTIVE' tag */
+            }
+            .incentives-list li::after {
+                font-size: 0.65rem;
+                padding: 2px 6px;
             }
         }
     </style>
@@ -220,9 +407,82 @@
     <main class="merchants-page-section">
         <div class="container" data-aos="fade-up">
             <div class="text-center">
-                <h1 class="display-4 fw-bold">Verified Merchants</h1>
-                <p class="lead my-4 mx-auto" style="max-width: 600px;">Purchase your activation key from any of our trusted and verified vendors below. Click the button to contact them directly.</p>
+                <h1 class="display-4 fw-bold">Get Your Activation Key</h1>
+                <p class="lead my-4 mx-auto" style="max-width: 700px;">Ready to join? First, you'll need an activation key. You can get one instantly by selecting a plan below, or by contacting one of our trusted merchants directly.</p>
             </div>
+            
+            <!-- Packages Section -->
+            <div class="package-carousel-wrapper mt-5">
+                <div class="row g-0 mt-2 flex-nowrap flex-lg-wrap justify-content-lg-center">
+                    <!-- Animo Gold Card -->
+                    <div class="col-11 col-sm-10 col-md-8 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="package-card-v2 package-card-gold h-100">
+                            <div class="popular-tag">Popular</div>
+                            <div class="package-card-header-v2">
+                                <h3 class="gold-text">Animo Gold</h3>
+                                <p class="plan-subtitle">Complete Reward & Incentive Package</p>
+                                <div class="package-card-price-v2"><span class="currency">₦</span>15,000 <span class="term">/ Activation Fee</span></div>
+                            </div>
+                            <h4 class="mt-4 mb-3 fs-5">Reward Pattern</h4>
+                            <ul class="package-features-grid">
+                                <li><span class="feature-name">Sponsor Commission</span><span class="feature-value">₦13,000</span></li>
+                                <li><span class="feature-name">Instant Cashback</span><span class="feature-value">₦13,000</span></li>
+                                <li><span class="feature-name">First Level Spill</span><span class="feature-value">₦400</span></li>
+                                <li><span class="feature-name">Second Level Spill</span><span class="feature-value">₦100</span></li>
+                                <li><span class="feature-name">Snapchat Story</span><span class="feature-value">₦1,500</span></li>
+                                <li><span class="feature-name">Article Engagement</span><span class="feature-value">₦1,000</span></li>
+                                <li class="grid-full-width"><span class="feature-name">Walk-to-Earn</span><span class="feature-value">₦10 / Step</span></li>
+                            </ul>
+                            <h4 class="mt-3 mb-3 fs-5">Included Incentives</h4>
+                            <ul class="incentives-list">
+                                <li class="active">Incentives</li>
+                                <li class="active">Animo Yaps</li>
+                                <li class="active">Bookstore</li>
+                                <li class="active">Photo Contest</li>
+                                <li class="active">Animo Games</li>
+                                <li class="active">Skill Up</li>
+                                <li class="active">Animo Gig</li>
+                            </ul>
+                            <a data-dynamic-link="global" target="_blank" class="btn btn-gradient mt-auto">Get Started with Gold</a>
+                        </div>
+                    </div>
+                    <!-- Animo Silver Card -->
+                    <div class="col-11 col-sm-10 col-md-8 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="package-card-v2 package-card-silver h-100">
+                            <div class="package-card-header-v2">
+                                <h3 class="silver-text">Animo Silver</h3>
+                                <p class="plan-subtitle">Essential Reward & Incentive Package</p>
+                                <div class="package-card-price-v2"><span class="currency">₦</span>10,000 <span class="term">/ Activation Fee</span></div>
+                            </div>
+                            <h4 class="mt-4 mb-3 fs-5">Reward Pattern</h4>
+                            <ul class="package-features-grid">
+                                <li><span class="feature-name">Sponsor Commission</span><span class="feature-value">₦9,000</span></li>
+                                <li><span class="feature-name">Instant Cashback</span><span class="feature-value">₦8,500</span></li>
+                                <li><span class="feature-name">First Level Spill</span><span class="feature-value">₦200</span></li>
+                                <li><span class="feature-name">Second Level Spill</span><span class="feature-value">₦100</span></li>
+                                <li><span class="feature-name">Snapchat Story</span><span class="feature-value">₦1,000</span></li>
+                                <li><span class="feature-name">Article Engagement</span><span class="feature-value">₦700</span></li>
+                                <li class="grid-full-width"><span class="feature-name">Walk-to-Earn</span><span class="feature-value">₦6 / Step</span></li>
+                            </ul>
+                            <h4 class="mt-3 mb-3 fs-5">Included Incentives</h4>
+                            <ul class="incentives-list">
+                                <li class="active">Incentives</li>
+                                <li class="active">Animo Yaps</li>
+                                <li class="active">Bookstore</li>
+                                <li class="active">Photo Contest</li>
+                                <li class="inactive">Animo Games</li>
+                                <li class="active">Skill Up</li>
+                                <li class="inactive">Animo Gig</li>
+                            </ul>
+                            <a data-dynamic-link="global" target="_blank" class="btn btn-outline-light mt-auto">Get Started with Silver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Packages Section -->
+
+            <hr class="my-5" style="border-color: rgba(255,255,255,0.2);">
+            <h3 class="text-center mb-4">Or Contact a Merchant Directly</h3>
             
             <div id="merchant-list" class="merchant-list">
                 <!-- Merchant list will be dynamically loaded here -->
